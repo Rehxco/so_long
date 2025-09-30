@@ -1,0 +1,47 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/16 15:31:24 by sbrochar          #+#    #+#             */
+/*   Updated: 2025/09/30 20:35:53 by sbrochar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef SO_LONG_H
+# define SO_LONG_H
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1000
+# endif
+
+# include <fcntl.h>
+# include <stdbool.h>
+# include <stdlib.h>
+# include <unistd.h>
+
+typedef struct s_data
+{
+	int		height;
+	int		width;
+	int		collectibles_total;
+	int		collectibles_found;
+	bool	exit_found;
+}			t_data;
+
+char		*get_next_line(int fd);
+char		*ft_strjoin(char const *str1, char const *str2);
+char		*ft_strchr(const char *str, int c);
+char		*ft_strdup(const char *src);
+char		*ft_substr(char const *str, unsigned int start, size_t len);
+size_t		ft_strlen(const char *str);
+size_t		ft_strlcpy(char *dest, const char *src, size_t size);
+void		all_free(char **ptr);
+int			count_height(char *filename);
+char		**read_map(char *filename, int *height);
+size_t		len_with_or_not_n(char *str);
+bool		check_rectangle(char **map, int height);
+
+#endif
