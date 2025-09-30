@@ -2,7 +2,14 @@ NAME = so_long
 
 HEADER = so_long.h 
 
-SOURCES = 
+SOURCES = free/free_map.c \
+			GNL/get_next_line_utils.c \
+			GNL/get_next_line.c \
+			map/playable_map.c \
+			map/read_map.c \
+			map/valid_elements.c \
+			map/valid_map.c \
+			map/valid_walls.c \
 
 OBJECTS = $(SOURCES:.c=.o)
 

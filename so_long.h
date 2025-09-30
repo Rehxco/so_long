@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 15:31:24 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/09/30 20:35:53 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/09/30 22:10:40 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,17 @@ int			count_height(char *filename);
 char		**read_map(char *filename, int *height);
 size_t		len_with_or_not_n(char *str);
 bool		check_rectangle(char **map, int height);
+void		free_map(char **map, int height);
+int			*player_position(char **map, int height);
+char		**copy_map(char **map, int height);
+void		explore(char **map_copy, int y, int x, t_data *data);
+bool		validate_path(char **map, t_data *data);
+bool		valid_count_p(char **map, int height);
+bool		valid_count_c(char **map, int height);
+bool		valid_count_e(char **map, int height);
+bool		check_elements(char **map, int height);
+bool		check_w_top(char **map);
+bool		check_w_bot(char **map, int height);
+bool		check_walls(char **map, int height);
 
 #endif

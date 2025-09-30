@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 17:54:32 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/09/30 20:31:52 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/09/30 22:06:04 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,44 @@ char	**copy_map(char **map, int height)
 	}
 	return (tmp);
 }
+
 void	explore(char **map_copy, int y, int x, t_data *data)
 {
+	if (x < 0 || x >= data->width || y < 0 || y >= data->height)
+		return ;
+	if (map_copy[y][x] == '1')
+		return ;
+	if (map_copy[y][x] == 'X')
+		return ;
+	if (map_copy[y][x] == 'C')
+		data->collectibles_found = data->collectibles_found + 1;
+	if (map_copy[y][x] == 'E')
+		data->exit_found = true;
+	map_copy[y][x] = 'X';
+	explore(map_copy, y - 1, x, data);
+	explore(map_copy, y + 1, x, data);
+	explore(map_copy, y, x - 1, data);
+	explore(map_copy, y, x + 1, data);
+}
+
+bool	validate_path(char **map, t_data *data)
+{
+	char	**tmp;
+	int		*position;
+	int		j;
+
+	j = 0;
+	tmp = copy_map(map, data->height);
+	data->collectibles_found = 0;
+	data->exit_found = false;
+	position = player_position(map, data->height);
+	explore(tmp, position[0], position[1], data);
+	free(position);
+	free_map(tmp, data->height);
+	free(tmp);
+	if (data->exit_found == true
+		&& data->collectibles_found == data->collectibles_total)
+		return (true);
+	else
+		return (false);
 }
