@@ -6,11 +6,11 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 14:57:27 by mac               #+#    #+#             */
-/*   Updated: 2025/09/22 12:00:53 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/01 22:27:54 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../../so_long.h"
 
 int	count_height(char *filename)
 {

@@ -6,13 +6,13 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 17:54:32 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/09/30 22:06:04 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/02 15:34:23 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../../so_long.h"
 
-int	*player_position(char **map, int height)
+int	*player_position(char **map, int map_height)
 {
 	int	i;
 	int	j;
@@ -23,7 +23,7 @@ int	*player_position(char **map, int height)
 	tab = malloc(2 * sizeof(int));
 	if (!tab)
 		return (NULL);
-	while (j < height)
+	while (j < map_height)
 	{
 		while (map[j][i])
 		{
@@ -40,16 +40,16 @@ int	*player_position(char **map, int height)
 	}
 }
 
-char	**copy_map(char **map, int height)
+char	**copy_map(char **map, int map_height)
 {
 	char	**tmp;
 	int		j;
 
 	j = 0;
-	tmp = malloc(height * sizeof(char *));
+	tmp = malloc(map_height * sizeof(char *));
 	if (!tmp)
 		return (NULL);
-	while (j < height)
+	while (j < map_height)
 	{
 		tmp[j] = ft_strdup(map[j]);
 		if (!tmp[j])
@@ -69,7 +69,7 @@ char	**copy_map(char **map, int height)
 
 void	explore(char **map_copy, int y, int x, t_data *data)
 {
-	if (x < 0 || x >= data->width || y < 0 || y >= data->height)
+	if (x < 0 || x >= data->map_width || y < 0 || y >= data->map_height)
 		return ;
 	if (map_copy[y][x] == '1')
 		return ;
@@ -93,13 +93,13 @@ bool	validate_path(char **map, t_data *data)
 	int		j;
 
 	j = 0;
-	tmp = copy_map(map, data->height);
+	tmp = copy_map(map, data->map_height);
 	data->collectibles_found = 0;
 	data->exit_found = false;
-	position = player_position(map, data->height);
+	position = player_position(map, data->map_height);
 	explore(tmp, position[0], position[1], data);
 	free(position);
-	free_map(tmp, data->height);
+	free_map(tmp, data->map_height);
 	free(tmp);
 	if (data->exit_found == true
 		&& data->collectibles_found == data->collectibles_total)

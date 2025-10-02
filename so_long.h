@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 15:31:24 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/09/30 22:10:40 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/02 15:31:30 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 
 typedef struct s_data
 {
-	int		height;
-	int		width;
+	int		map_height;
+	int		map_width;
 	int		collectibles_total;
 	int		collectibles_found;
 	bool	exit_found;
@@ -51,9 +51,10 @@ bool		validate_path(char **map, t_data *data);
 bool		valid_count_p(char **map, int height);
 bool		valid_count_c(char **map, int height);
 bool		valid_count_e(char **map, int height);
-bool		check_elements(char **map, int height);
+bool		check_elements(char **map, t_data *data);
 bool		check_w_top(char **map);
 bool		check_w_bot(char **map, int height);
-bool		check_walls(char **map, int height);
+bool		check_walls(char **map, t_data *data);
+bool		parse_map(char **map, t_data *data, char *filename);
 
 #endif

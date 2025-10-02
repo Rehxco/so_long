@@ -5,11 +5,11 @@ HEADER = so_long.h
 SOURCES = free/free_map.c \
 			GNL/get_next_line_utils.c \
 			GNL/get_next_line.c \
-			map/playable_map.c \
-			map/read_map.c \
-			map/valid_elements.c \
-			map/valid_map.c \
-			map/valid_walls.c \
+			parsing/map/playable_map.c \
+			parsing/map/read_map.c \
+			parsing/map/valid_elements.c \
+			parsing/map/valid_map.c \
+			parsing/map/valid_walls.c \
 
 OBJECTS = $(SOURCES:.c=.o)
 

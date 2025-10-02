@@ -6,11 +6,11 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 17:24:02 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/09/30 17:11:31 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/02 15:33:25 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../../so_long.h"
 
 bool	valid_count_p(char **map, int height)
 {
@@ -61,6 +61,7 @@ bool	valid_count_e(char **map, int height)
 		return (false);
 	return (true);
 }
+
 bool	valid_count_c(char **map, int height)
 {
 	int	i;
@@ -86,14 +87,14 @@ bool	valid_count_c(char **map, int height)
 	return (true);
 }
 
-bool	check_elements(char **map, int height)
+bool	check_elements(char **map, t_data *data)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	while (j < height)
+	while (j < data->map_height)
 	{
 		while (map[j][i])
 		{
@@ -105,11 +106,11 @@ bool	check_elements(char **map, int height)
 		i = 0;
 		j++;
 	}
-	if (valid_count_c(map, height) == false)
+	if (valid_count_c(map, data->map_height) == false)
 		return (false);
-	if (valid_count_p(map, height) == false)
+	if (valid_count_p(map, data->map_height) == false)
 		return (false);
-	if (valid_count_e(map, height) == false)
+	if (valid_count_e(map, data->map_height) == false)
 		return (false);
 	return (true);
 }
