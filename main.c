@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_map.c                                         :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/30 22:05:28 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/14 17:24:36 by sbrochar         ###   ########.fr       */
+/*   Created: 2025/10/14 17:20:00 by sbrochar          #+#    #+#             */
+/*   Updated: 2025/10/14 17:22:50 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long.h"
 
-void	free_map(char **map, int height)
+int	main(void)
 {
-	int	j;
+	void	*mlx;
+	void	*win;
 
-	if (!map || !*map)
-		return ;
-	j = 0;
-	while (j < height)
-	{
-		free(&(*map)[j]);
-		j++;
-	}
-	free(*map);
-	*map = NULL;
+	mlx = mlx_init();
+	if(!mlx)
+		return(0);
+	win = mlx_new_window(mlx, 800, 600, "Hello MLX!");
+	mlx_loop(mlx);
+	return (0);
 }

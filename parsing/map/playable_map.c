@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 17:54:32 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/02 15:34:23 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/14 17:26:52 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	*player_position(char **map, int map_height)
 		i = 0;
 		j++;
 	}
+	return (NULL);
 }
 
 char	**copy_map(char **map, int map_height)
