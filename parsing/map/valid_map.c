@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 12:11:08 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/02 15:32:08 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/08 14:45:16 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,3 @@ bool	check_rectangle(char **map, t_data *data)
 	}
 	return (true);
 }
-

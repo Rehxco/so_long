@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 14:57:27 by mac               #+#    #+#             */
-/*   Updated: 2025/10/01 22:27:54 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/08 14:44:50 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	count_height(char *filename)
 	return (i);
 }
 
-char	**read_map(char *filename, int *height)
+char	**read_map(char *filename, t_data *data)
 {
 	int		fd;
 	char	**map;
@@ -41,11 +41,11 @@ char	**read_map(char *filename, int *height)
 	char	*str;
 
 	i = 0;
-	*height = count_height(filename);
+	data->map_height = count_height(filename);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (NULL);
-	map = malloc(sizeof(char *) * (*height + 1));
+	map = malloc(sizeof(char *) * (data->map_height + 1));
 	if (!map)
 		return (NULL);
 	str = get_next_line(fd);
@@ -57,5 +57,6 @@ char	**read_map(char *filename, int *height)
 	}
 	map[i] = NULL;
 	close(fd);
+	data->map_width = len_with_or_not_n(map[0]);
 	return (map);
 }
