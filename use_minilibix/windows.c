@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 21:07:21 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/14 23:19:38 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/15 15:55:26 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,48 @@ bool	load_images(t_data *data)
 	if (!data->img_exit)
 		return (false);
 	return (true);
+}
+
+void	draw_map(t_data *data)
+{
+	int		y;
+	int		x;
+	char	c;
+
+	y = 0;
+	while (y < data->map_height)
+	{
+		x = 0;
+		while (x < data->map_width)
+		{
+			c = data->map[y][x];
+			mlx_put_image_to_window(data->mlx, data->win, data->img_floor, x
+				* data->img_width, y * data->img_height);
+			if (c == '1')
+				put_image(data, '1', x, y);
+			if (c == 'C')
+				put_image(data, 'C', x, y);
+			if (c == 'E')
+				put_image(data, 'E', x, y);
+			if (c == 'P')
+				put_image(data, 'P', x, y);
+			x++;
+		}
+		y++;
+	}
+}
+void	put_image(t_data *data, char c, int x, int y)
+{
+	
+		mlx_put_image_to_window(data->mlx, data->win, data->img_wall, x
+			* data->img_width, y * data->img_height);
+	
+		mlx_put_image_to_window(data->mlx, data->win, data->img_collectible, x
+			* data->img_width, y * data->img_height);
+	
+		mlx_put_image_to_window(data->mlx, data->win, data->img_exit, x
+			* data->img_width, y * data->img_height);
+
+		mlx_put_image_to_window(data->mlx, data->win, data->img_player, x
+			* data->img_width, y * data->img_height);
 }
