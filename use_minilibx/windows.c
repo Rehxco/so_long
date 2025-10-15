@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 21:07:21 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/15 15:55:26 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/15 16:06:20 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,21 @@ bool	load_images(t_data *data)
 		return (false);
 	return (true);
 }
+void	put_image(t_data *data, char c, int x, int y)
+{
+	if (c == '1')
+		mlx_put_image_to_window(data->mlx, data->win, data->img_wall, x
+			* data->img_width, y * data->img_height);
+	if (c == 'C')
+		mlx_put_image_to_window(data->mlx, data->win, data->img_collectible, x
+			* data->img_width, y * data->img_height);
+	if (c == 'E')
+		mlx_put_image_to_window(data->mlx, data->win, data->img_exit, x
+			* data->img_width, y * data->img_height);
+	if (c == 'P')
+		mlx_put_image_to_window(data->mlx, data->win, data->img_player, x
+			* data->img_width, y * data->img_height);
+}
 
 void	draw_map(t_data *data)
 {
@@ -80,19 +95,4 @@ void	draw_map(t_data *data)
 		}
 		y++;
 	}
-}
-void	put_image(t_data *data, char c, int x, int y)
-{
-	
-		mlx_put_image_to_window(data->mlx, data->win, data->img_wall, x
-			* data->img_width, y * data->img_height);
-	
-		mlx_put_image_to_window(data->mlx, data->win, data->img_collectible, x
-			* data->img_width, y * data->img_height);
-	
-		mlx_put_image_to_window(data->mlx, data->win, data->img_exit, x
-			* data->img_width, y * data->img_height);
-
-		mlx_put_image_to_window(data->mlx, data->win, data->img_player, x
-			* data->img_width, y * data->img_height);
 }

@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 15:31:24 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/14 20:59:33 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/15 16:02:38 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,9 @@ bool		check_w_bot(char **map, int height);
 bool		check_walls(char **map, t_data *data);
 bool		parse_map(char **map, t_data *data);
 void		store_map_info(char c, t_data *data, int x, int y);
+bool		init_mlx(t_data *data);
+bool		load_images(t_data *data);
+void		draw_map(t_data *data);
+void		put_image(t_data *data, char c, int x, int y);
 
 #endif
