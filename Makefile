@@ -11,7 +11,9 @@ SOURCES = free/free_map.c \
 			parsing/map/valid_map.c \
 			parsing/map/valid_walls.c \
 			use_minilibx/windows.c \
+			use_minilibx/exit_windows.c \
 			main.c \
+			game/move_player.c
 
 
 OBJECTS = $(SOURCES:.c=.o)

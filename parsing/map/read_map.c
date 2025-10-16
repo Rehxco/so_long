@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 14:57:27 by mac               #+#    #+#             */
-/*   Updated: 2025/10/08 14:44:50 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/16 23:31:22 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,39 @@ int	count_height(char *filename)
 	}
 	close(fd);
 	return (i);
+}
+void	init_player_and_collectibles(t_data *data)
+{
+	int	y;
+	int	x;
+
+	data->collectibles_total = 0;
+	data->player_x = -1;
+	data->player_y = -1;
+	y = 0;
+	while (y < data->map_height)
+	{
+		x = 0;
+		while (x < data->map_width)
+		{
+			if (data->map[y][x] == 'P')
+			{
+				data->player_x = x;
+				data->player_y = y;
+			}
+			else if (data->map[y][x] == 'C')
+			{
+				data->collectibles_total++;
+			}
+			x++;
+		}
+		y++;
+	}
+	if (data->player_x == -1 || data->player_y == -1)
+	{
+		write(1, "Erreur: joueur non trouvé sur la map\n", 37);
+		exit(1);
+	}
 }
 
 char	**read_map(char *filename, t_data *data)

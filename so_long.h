@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 15:31:24 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/15 16:02:38 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/16 23:42:43 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "minilibx-linux/mlx.h"
 # include <fcntl.h>
 # include <stdbool.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -68,7 +69,6 @@ int			*player_position(char **map, int height);
 char		**copy_map(char **map, int height);
 void		explore(char **map_copy, int y, int x, t_data *data);
 bool		validate_path(char **map, t_data *data);
-
 bool		check_elements(char **map, t_data *data);
 bool		check_w_top(char **map);
 bool		check_w_bot(char **map, int height);
@@ -79,5 +79,14 @@ bool		init_mlx(t_data *data);
 bool		load_images(t_data *data);
 void		draw_map(t_data *data);
 void		put_image(t_data *data, char c, int x, int y);
+bool		valid_extension(char *filename);
+void		init_player_and_collectibles(t_data *data);
+int			handle_key(int keycode, t_data *data);
+int			move_player(t_data *data, int dx, int dy);
+void		move_to_free_pos(t_data *data, int new_pos_x, int new_pos_y);
+void		exit_game(t_data *data);
+int			close_window(t_data *data);
+void		try_move(t_data *data, int new_x, int new_y, char c);
+void		draw_cell(t_data *data, int x, int y);
 
 #endif

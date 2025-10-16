@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 12:11:08 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/08 14:45:16 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/16 19:32:46 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,18 @@ bool	check_rectangle(char **map, t_data *data)
 		i++;
 	}
 	return (true);
+}
+bool	valid_extension(char *filename)
+{
+	int	len;
+
+	if (!filename)
+		return (false);
+	len = ft_strlen(filename);
+	if (len < 4)
+		return (false);
+	if (filename[len - 4] == '.' && filename[len - 3] == 'b' && filename[len
+		- 2] == 'e' && filename[len - 1] == 'r')
+		return (true);
+	return (false);
 }
