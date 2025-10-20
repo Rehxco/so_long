@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 14:57:27 by mac               #+#    #+#             */
-/*   Updated: 2025/10/20 19:14:10 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/20 20:59:59 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ char	**read_map(char *filename, t_data *data)
 	map = alloc_map(filename, count_height(filename), &fd);
 	if (!map)
 		return (NULL);
-	while ((line = get_next_line(fd)) != NULL)
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
 		line = process_line(line, data);
 		if (line)

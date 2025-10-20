@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 17:24:02 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/20 20:54:23 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/20 21:03:11 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ bool	scan_map_elements(char **map, t_data *data)
 	}
 	return (true);
 }
+
 bool	check_elements(char **map, t_data *data)
 {
 	if (!scan_map_elements(map, data))

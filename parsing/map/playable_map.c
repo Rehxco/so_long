@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 17:54:32 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/20 19:00:17 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/20 21:07:57 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,12 @@ char	**copy_map(char **map, int height)
 	copy = malloc(sizeof(char *) * (height + 1));
 	if (!copy)
 		return (NULL);
-	for (i = 0; i < height; i++)
+	i = 0;
+	while (i < height)
+	{
 		copy[i] = ft_strdup(map[i]);
+		i++;
+	}
 	copy[height] = NULL;
 	return (copy);
 }
