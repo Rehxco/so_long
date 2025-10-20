@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 21:07:21 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/16 23:42:57 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/20 14:01:58 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ bool	load_images(t_data *data)
 			&data->img_width, &data->img_height);
 	if (!data->img_floor)
 		return (false);
-	data->img_player = mlx_xpm_file_to_image(data->mlx, "textures/teemo.xpm",
+	data->img_player = mlx_xpm_file_to_image(data->mlx, "textures/playervf.xpm",
 			&data->img_width, &data->img_height);
 	if (!data->img_player)
 		return (false);
 	data->img_collectible = mlx_xpm_file_to_image(data->mlx,
-			"textures/mushroom.xpm", &data->img_width, &data->img_height);
+			"textures/champivf.xpm", &data->img_width, &data->img_height);
 	if (!data->img_collectible)
 		return (false);
-	data->img_exit = mlx_xpm_file_to_image(data->mlx, "textures/exit.xpm",
+	data->img_exit = mlx_xpm_file_to_image(data->mlx, "textures/exitvf.xpm",
 			&data->img_width, &data->img_height);
 	if (!data->img_exit)
 		return (false);

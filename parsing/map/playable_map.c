@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 17:54:32 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/14 17:26:52 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/20 19:00:17 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,31 +41,18 @@ int	*player_position(char **map, int map_height)
 	return (NULL);
 }
 
-char	**copy_map(char **map, int map_height)
+char	**copy_map(char **map, int height)
 {
-	char	**tmp;
-	int		j;
+	char	**copy;
+	int		i;
 
-	j = 0;
-	tmp = malloc(map_height * sizeof(char *));
-	if (!tmp)
+	copy = malloc(sizeof(char *) * (height + 1));
+	if (!copy)
 		return (NULL);
-	while (j < map_height)
-	{
-		tmp[j] = ft_strdup(map[j]);
-		if (!tmp[j])
-		{
-			while (j > 0)
-			{
-				free(tmp[j - 1]);
-				j--;
-			}
-			free(tmp);
-			return (NULL);
-		}
-		j++;
-	}
-	return (tmp);
+	for (i = 0; i < height; i++)
+		copy[i] = ft_strdup(map[i]);
+	copy[height] = NULL;
+	return (copy);
 }
 
 void	explore(char **map_copy, int y, int x, t_data *data)
@@ -89,22 +76,39 @@ void	explore(char **map_copy, int y, int x, t_data *data)
 
 bool	validate_path(char **map, t_data *data)
 {
-	char	**tmp;
-	int		*position;
-	int		j;
+	char	**map_copy;
+	bool	valid;
 
-	j = 0;
-	tmp = copy_map(map, data->map_height);
 	data->collectibles_found = 0;
 	data->exit_found = false;
-	position = player_position(map, data->map_height);
-	explore(tmp, position[0], position[1], data);
-	free(position);
-	free_map(tmp, data->map_height);
-	free(tmp);
-	if (data->exit_found == true
-		&& data->collectibles_found == data->collectibles_total)
-		return (true);
-	else
+	map_copy = copy_map(map, data->map_height);
+	if (!map_copy)
 		return (false);
+	explore(map_copy, data->player_y, data->player_x, data);
+	valid = (data->collectibles_found == data->collectibles_total
+			&& data->exit_found);
+	free_map(map_copy, data->map_height);
+	return (valid);
+}
+
+int	count_collectibles(char **map, int map_height)
+{
+	int	y;
+	int	x;
+	int	count;
+
+	y = 0;
+	count = 0;
+	while (y < map_height)
+	{
+		x = 0;
+		while (map[y][x])
+		{
+			if (map[y][x] == 'C')
+				count++;
+			x++;
+		}
+		y++;
+	}
+	return (count);
 }

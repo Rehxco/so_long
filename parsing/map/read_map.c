@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 14:57:27 by mac               #+#    #+#             */
-/*   Updated: 2025/10/16 23:31:22 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/20 19:14:10 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,64 +32,59 @@ int	count_height(char *filename)
 	close(fd);
 	return (i);
 }
-void	init_player_and_collectibles(t_data *data)
-{
-	int	y;
-	int	x;
 
-	data->collectibles_total = 0;
-	data->player_x = -1;
-	data->player_y = -1;
-	y = 0;
-	while (y < data->map_height)
+char	*process_line(char *line, t_data *data)
+{
+	int	len;
+
+	len = 0;
+	if (!line)
+		return (NULL);
+	while (line[len] && line[len] != '\n')
+		len++;
+	if (len == 0)
 	{
-		x = 0;
-		while (x < data->map_width)
-		{
-			if (data->map[y][x] == 'P')
-			{
-				data->player_x = x;
-				data->player_y = y;
-			}
-			else if (data->map[y][x] == 'C')
-			{
-				data->collectibles_total++;
-			}
-			x++;
-		}
-		y++;
+		free(line);
+		return (NULL);
 	}
-	if (data->player_x == -1 || data->player_y == -1)
-	{
-		write(1, "Erreur: joueur non trouvé sur la map\n", 37);
-		exit(1);
-	}
+	if (data->map_width == 0)
+		data->map_width = len;
+	data->map_height++;
+	line[len] = '\0';
+	return (line);
+}
+
+char	**alloc_map(char *filename, int height, int *fd)
+{
+	char	**map;
+
+	*fd = open(filename, O_RDONLY);
+	if (*fd < 0)
+		return (NULL);
+	map = malloc(sizeof(char *) * (height + 1));
+	return (map);
 }
 
 char	**read_map(char *filename, t_data *data)
 {
 	int		fd;
 	char	**map;
+	char	*line;
 	int		i;
-	char	*str;
 
 	i = 0;
-	data->map_height = count_height(filename);
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-		return (NULL);
-	map = malloc(sizeof(char *) * (data->map_height + 1));
+	data->map_height = 0;
+	data->map_width = 0;
+	map = alloc_map(filename, count_height(filename), &fd);
 	if (!map)
 		return (NULL);
-	str = get_next_line(fd);
-	while (str != NULL)
+	while ((line = get_next_line(fd)) != NULL)
 	{
-		map[i] = str;
-		i++;
-		str = get_next_line(fd);
+		line = process_line(line, data);
+		if (line)
+			map[i++] = line;
 	}
-	map[i] = NULL;
 	close(fd);
-	data->map_width = len_with_or_not_n(map[0]);
+	map[i] = NULL;
 	return (map);
 }

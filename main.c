@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 17:20:00 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/16 22:01:38 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/20 19:01:08 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,11 @@ int	main(int ac, char **av)
 	{
 		write(1, "Erreur: impossible de lire la map\n", 34);
 		return (1);
+	}
+	if(!parse_map(data.map, &data))
+	{
+		write(1, "Probleme de parsing\n", 21);
+		return(1);
 	}
 	init_player_and_collectibles(&data);
 	printf("Map chargée: height=%d, width=%d\n", data.map_height,

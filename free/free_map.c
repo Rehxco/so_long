@@ -6,24 +6,25 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 22:05:28 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/16 19:05:12 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/20 18:23:53 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
+
 void	free_map(char **map, int height)
 {
 	int	j;
 
-	if (!map || !*map)
+	if (!map)
 		return ;
-	j = 0;
-	while (j < height)
+	for (j = 0; j < height; j++)
 	{
-		free((map)[j]);
-		j++;
+		if (map[j])
+		{
+			free(map[j]);
+		}
 	}
 	free(map);
-	*map = NULL;
 }

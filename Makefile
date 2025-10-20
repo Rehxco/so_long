@@ -10,6 +10,8 @@ SOURCES = free/free_map.c \
 			parsing/map/valid_elements.c \
 			parsing/map/valid_map.c \
 			parsing/map/valid_walls.c \
+			parsing/parsing.c \
+			parsing/init_elements.c \
 			use_minilibx/windows.c \
 			use_minilibx/exit_windows.c \
 			main.c \

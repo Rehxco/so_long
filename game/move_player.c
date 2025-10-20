@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 14:30:53 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/16 23:39:04 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/20 19:08:23 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,14 @@ bool	is_in_bounds(t_data *data, int x, int y)
 
 void	try_move(t_data *data, int new_x, int new_y, char c)
 {
+	printf("Total collectibles in map = %d\n", data->collectibles_total);
+	printf(" collectibles found  in map = %d\n", data->collectibles_found);
 	if (c == '0' || c == 'P')
 		move_to_free_pos(data, new_x, new_y);
 	else if (c == 'C')
 	{
 		data->collectibles_found++;
+		data->map[new_y][new_x] = '0';
 		move_to_free_pos(data, new_x, new_y);
 	}
 	else if (c == 'E')

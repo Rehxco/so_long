@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 15:31:24 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/16 23:42:43 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/20 20:54:44 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,15 @@ typedef struct s_data
 	int		map_height;
 	int		map_width;
 	char	**map;
-
 	int		collectibles_total;
 	int		collectibles_found;
 	bool	exit_found;
 	int		player_x;
 	int		player_y;
 	int		player_count;
-
+	int		exit_count;
 	void	*mlx;
 	void	*win;
-
 	void	*img_wall;
 	void	*img_floor;
 	void	*img_collectible;
@@ -47,7 +45,6 @@ typedef struct s_data
 	void	*img_player;
 	int		img_width;
 	int		img_height;
-
 	int		moves_count;
 
 }			t_data;
@@ -88,5 +85,11 @@ void		exit_game(t_data *data);
 int			close_window(t_data *data);
 void		try_move(t_data *data, int new_x, int new_y, char c);
 void		draw_cell(t_data *data, int x, int y);
+char		**alloc_map(char *filename, int height, int *fd);
+char		*process_line(char *line, t_data *data);
+int			count_collectibles(char **map, int map_height);
+void		error_exit(const char *error_message);
+void		scan_map(t_data *data);
+bool		scan_map_elements(char **map, t_data *data);
 
 #endif
