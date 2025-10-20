@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 15:31:24 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/20 20:54:44 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/20 21:49:52 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,10 @@ void		draw_cell(t_data *data, int x, int y);
 char		**alloc_map(char *filename, int height, int *fd);
 char		*process_line(char *line, t_data *data);
 int			count_collectibles(char **map, int map_height);
-void		error_exit(const char *error_message);
+void		error_message(const char *error_message);
 void		scan_map(t_data *data);
 bool		scan_map_elements(char **map, t_data *data);
+void		ft_putnbr_fd(int n, int fd);
+void		print_moves(int moves);
 
 #endif

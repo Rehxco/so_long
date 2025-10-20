@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_windows.c                                     :+:      :+:    :+:   */
+/*   counter.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/16 23:34:12 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/20 21:49:38 by sbrochar         ###   ########.fr       */
+/*   Created: 2025/10/20 21:30:10 by sbrochar          #+#    #+#             */
+/*   Updated: 2025/10/20 21:30:28 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	exit_game(t_data *data)
+void	ft_putnbr_fd(int n, int fd)
 {
-	write(1, "Thanks you for playing <3\n", 26);
-	mlx_destroy_window(data->mlx, data->win);
-	free_map(data->map, data->map_height);
-	exit(0);
+	char	c;
+
+	if (n >= 10)
+		ft_putnbr_fd(n / 10, fd);
+	c = (n % 10) + '0';
+	write(fd, &c, 1);
 }
 
-int	close_window(t_data *data)
+void	print_moves(int moves)
 {
-	exit_game(data);
-	return (0);
-}
-
-void	error_message(const char *error_message)
-{
-	write(1, error_message, ft_strlen(error_message));
+	write(1, "Moves: ", 7);
+	ft_putnbr_fd(moves, 1);
 	write(1, "\n", 1);
-	exit(1);
 }

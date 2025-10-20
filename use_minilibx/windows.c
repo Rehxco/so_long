@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 21:07:21 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/20 14:01:58 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/20 21:36:45 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,8 @@ void	put_image(t_data *data, char c, int x, int y)
 		mlx_put_image_to_window(data->mlx, data->win, data->img_exit, x
 			* data->img_width, y * data->img_height);
 	if (c == 'P')
-	{
-		printf("Drawing player at x=%d y=%d\n", x, y);
 		mlx_put_image_to_window(data->mlx, data->win, data->img_player, x
 			* data->img_width, y * data->img_height);
-	}
 }
 
 void	draw_cell(t_data *data, int x, int y)

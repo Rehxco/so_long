@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 19:13:58 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/20 20:59:07 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/20 21:51:20 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ void	init_player_and_collectibles(t_data *data)
 	data->player_y = -1;
 	scan_map(data);
 	if (data->player_x == -1 || data->player_y == -1)
-		error_exit("Joueur non trouvé");
+		error_message("Player not found");
 	if (data->exit_count != 1)
-		error_exit("Il doit y avoir exactement une sortie");
+		error_message("There must be exactly one exit");
 	if (data->collectibles_total < 1)
-		error_exit("Il faut au moins un collectible");
+		error_message("You need at least one collectible");
 }

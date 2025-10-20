@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 17:20:00 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/20 19:01:08 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/20 22:04:15 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,9 @@ int	main(int ac, char **av)
 		write(1, "Erreur: impossible de lire la map\n", 34);
 		return (1);
 	}
-	if(!parse_map(data.map, &data))
-	{
-		write(1, "Probleme de parsing\n", 21);
+	if (!parse_map(data.map, &data))
 		return(1);
-	}
 	init_player_and_collectibles(&data);
-	printf("Map chargée: height=%d, width=%d\n", data.map_height,
-		data.map_width);
-	printf("Map pointer: %p, height=%d, width=%d\n", data.map, data.map_height,
-		data.map_width);
-	if (data.map)
-		printf("Première ligne: %s\n", data.map[0]);
 	if (!init_mlx(&data))
 	{
 		write(1, "Erreur: impossible d'initialiser MLX\n", 37);
@@ -70,8 +61,6 @@ int	main(int ac, char **av)
 		write(1, "Erreur: impossible de charger les images\n", 40);
 		exit_game(&data);
 	}
-	printf("MLX pointer: %p, img_width=%d, img_height=%d\n", data.mlx,
-		data.img_width, data.img_height);
 	draw_map(&data);
 	mlx_hook(data.win, 2, 1L << 0, handle_key, &data);
 	mlx_hook(data.win, 17, 0L, close_window, &data);

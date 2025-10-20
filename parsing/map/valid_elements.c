@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 17:24:02 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/20 21:03:11 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/20 21:57:48 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,17 @@ bool	check_elements(char **map, t_data *data)
 		return (false);
 	if (data->player_count != 1)
 	{
-		write(1, "Mauvais nombre de player\n", 26);
+		write(1, "You forgot to put Teemo :(\n", 28);
 		return (false);
 	}
 	if (data->collectibles_found < 1)
 	{
-		write(1, "Pas de collectible sur la map\n", 30);
+		write(1, "I think there's a mushroom missing here\n", 41);
 		return (false);
 	}
 	if (!data->exit_found)
 	{
-		write(1, "Pas d'exit sur la map\n", 23);
+		write(1, "Where did I put the cage, in the closet?\n", 42);
 		return (false);
 	}
 	return (true);

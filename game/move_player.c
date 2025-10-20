@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 14:30:53 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/20 19:08:23 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/20 21:47:30 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	move_to_free_pos(t_data *data, int new_x, int new_y)
 {
+	if (data->player_x == new_x && data->player_y == new_y)
+		return ;
 	if (data->map[new_y][new_x] != 'E')
 		data->map[new_y][new_x] = 'P';
 	if (data->map[data->player_y][data->player_x] != 'E')
@@ -21,8 +23,8 @@ void	move_to_free_pos(t_data *data, int new_x, int new_y)
 	data->player_x = new_x;
 	data->player_y = new_y;
 	data->moves_count++;
+	print_moves(data->moves_count);
 	draw_map(data);
-	printf("Moves: %d\n", data->moves_count);
 }
 
 bool	is_in_bounds(t_data *data, int x, int y)
@@ -36,8 +38,6 @@ bool	is_in_bounds(t_data *data, int x, int y)
 
 void	try_move(t_data *data, int new_x, int new_y, char c)
 {
-	printf("Total collectibles in map = %d\n", data->collectibles_total);
-	printf(" collectibles found  in map = %d\n", data->collectibles_found);
 	if (c == '0' || c == 'P')
 		move_to_free_pos(data, new_x, new_y);
 	else if (c == 'C')
@@ -49,7 +49,11 @@ void	try_move(t_data *data, int new_x, int new_y, char c)
 	else if (c == 'E')
 	{
 		if (data->collectibles_found == data->collectibles_total)
+		{
+			data->moves_count++;
+			print_moves(data->moves_count);
 			exit_game(data);
+		}
 		else
 			move_to_free_pos(data, new_x, new_y);
 	}
@@ -75,7 +79,6 @@ int	handle_key(int keycode, t_data *data)
 	int	dx;
 	int	dy;
 
-	printf("keycode = %d\n", keycode);
 	if (keycode == 65307)
 		exit_game(data);
 	else
@@ -90,7 +93,6 @@ int	handle_key(int keycode, t_data *data)
 			dx = dx + 1;
 		else if (keycode == 97)
 			dx = dx - 1;
-		printf("Key pressed: %d, dx=%d, dy=%d\n", keycode, dx, dy);
 		move_player(data, dx, dy);
 	}
 	return (0);
