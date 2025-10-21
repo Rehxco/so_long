@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 16:00:09 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/20 21:22:18 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/21 20:38:55 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 bool	check_w_top(char **map)
 {
-	int	i;
+	size_t	i;
+	size_t	len;
 
+	len = len_with_or_not_n(map[0]);
 	i = 0;
-	while (map[0][i])
+	while (i < len)
 	{
 		if (map[0][i] != '1')
 			return (false);

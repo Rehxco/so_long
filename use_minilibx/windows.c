@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 21:07:21 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/20 21:36:45 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/21 17:17:27 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ bool	init_mlx(t_data *data)
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		return (false);
-	load_images(data);
 	if (!load_images(data))
 		return (false);
 	data->win = mlx_new_window(data->mlx, data->map_width * data->img_width,

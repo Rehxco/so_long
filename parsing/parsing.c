@@ -6,11 +6,21 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 22:28:51 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/20 22:05:48 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/21 20:14:27 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+bool	check_map_size(t_data *data)
+{
+	if (data->map_width > MAX_WIDTH || data->map_height > MAX_HEIGHT)
+	{
+		write(1, "The map is too big\n", 20);
+		return (false);
+	}
+	return (true);
+}
 
 void	init_var_parse(t_data *data)
 {
@@ -25,6 +35,8 @@ void	init_var_parse(t_data *data)
 bool	parse_map(char **map, t_data *data)
 {
 	init_var_parse(data);
+	if (!check_map_size(data))
+		return (false);
 	if (check_rectangle(map, data) == false)
 		return (write(1, "The map is not rectangular !\n", 30), false);
 	if (check_walls(map, data) == false)

@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 17:24:02 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/20 21:57:48 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/21 21:03:27 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ bool	scan_map_elements(char **map, t_data *data)
 			c = map[y][x];
 			if (c != '0' && c != '1' && c != 'C' && c != 'E' && c != 'P'
 				&& c != '\n' && c != '\r')
+			{
+				write(1, "What are you doing, buddy? Make an effort.\n", 43);
 				return (false);
+			}
 			store_map_info(c, data, x, y);
 			x++;
 		}
@@ -42,7 +45,7 @@ bool	check_elements(char **map, t_data *data)
 		return (false);
 	if (data->player_count != 1)
 	{
-		write(1, "You forgot to put Teemo :(\n", 28);
+		write(1, "Wrong number of Teemo, sorry:(\n", 32);
 		return (false);
 	}
 	if (data->collectibles_found < 1)
@@ -52,7 +55,7 @@ bool	check_elements(char **map, t_data *data)
 	}
 	if (!data->exit_found)
 	{
-		write(1, "Where did I put the cage, in the closet?\n", 42);
+		write(1, "Where did I put the pet carrier, in the closet?\n", 49);
 		return (false);
 	}
 	return (true);

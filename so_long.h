@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 15:31:24 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/20 21:49:52 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/21 20:37:10 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1000
 # endif
+
+# define MAX_WIDTH 30
+# define MAX_HEIGHT 17
 
 # include "minilibx-linux/mlx.h"
 # include <fcntl.h>
@@ -85,7 +88,7 @@ void		exit_game(t_data *data);
 int			close_window(t_data *data);
 void		try_move(t_data *data, int new_x, int new_y, char c);
 void		draw_cell(t_data *data, int x, int y);
-char		**alloc_map(char *filename, int height, int *fd);
+char		**alloc_map(int height, int *fd, char *file);
 char		*process_line(char *line, t_data *data);
 int			count_collectibles(char **map, int map_height);
 void		error_message(const char *error_message);
@@ -93,5 +96,7 @@ void		scan_map(t_data *data);
 bool		scan_map_elements(char **map, t_data *data);
 void		ft_putnbr_fd(int n, int fd);
 void		print_moves(int moves);
+bool		check_map_size(t_data *data);
+void		init_for_main(t_data *data);
 
 #endif
