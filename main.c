@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 17:20:00 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/21 20:47:06 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/22 20:17:50 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	main(int ac, char **av)
 		return (write(1, "Wrong number of arguments\n", 27), 1);
 	if (!valid_extension(av[1]))
 		return (write(1, "The map must have a .ber extension\n", 36), 1);
+	if (!verif_map_with_emptiness(av[1]))
+		return (write(1, "Invalid map\n", 13), 1);
 	init_for_main(&data);
 	data.map = read_map(av[1], &data);
 	if (!data.map)
@@ -52,9 +54,7 @@ int	main(int ac, char **av)
 	if (!init_mlx(&data))
 	{
 		write(1, "Unable to initialize MLX\n", 26);
-		free_map(data.map, data.map_height);
 		exit_game(&data);
-		return (1);
 	}
 	draw_map(&data);
 	mlx_hook(data.win, 2, 1L << 0, handle_key, &data);

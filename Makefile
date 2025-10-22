@@ -23,7 +23,7 @@ OBJECTS = $(SOURCES:.c=.o)
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3
 
 MLX_DIR = minilibx-linux
 MLX = $(MLX_DIR)/libmlx.a

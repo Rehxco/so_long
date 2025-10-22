@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 23:34:12 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/21 20:39:13 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/22 15:40:29 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,16 @@ void	exit_game(t_data *data)
 		mlx_destroy_image(data->mlx, data->img_floor);
 	if (data->img_wall)
 		mlx_destroy_image(data->mlx, data->img_wall);
-	if (data->img_collectible)
+	if (data->img_player)
 		mlx_destroy_image(data->mlx, data->img_player);
-	mlx_destroy_window(data->mlx, data->win);
-	mlx_destroy_display(data->mlx);
-	free(data->mlx);
-	free_map(data->map, data->map_height);
+	if (data->win)
+		mlx_destroy_window(data->mlx, data->win);
+	if (data->mlx)
+		mlx_destroy_display(data->mlx);
+	if (data->mlx)
+		free(data->mlx);
+	if (data->map)
+		free_map(data->map, data->map_height);
 	exit(0);
 }
 

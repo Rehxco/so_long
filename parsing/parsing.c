@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 22:28:51 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/21 20:14:27 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/22 20:19:32 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,33 @@ bool	check_map_size(t_data *data)
 		return (false);
 	}
 	return (true);
+}
+
+bool	verif_map_with_emptiness(char *filename)
+{
+	size_t	first_len;
+	size_t	len;
+	int		fd;
+	char	*tmp;
+
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		return (-1);
+	tmp = get_next_line(fd);
+	if (!tmp)
+		return (close(fd), false);
+	first_len = len_with_or_not_n(tmp);
+	while (tmp != NULL)
+	{
+		free(tmp);
+		tmp = get_next_line(fd);
+		if (!tmp)
+			return (close(fd), true);
+		len = len_with_or_not_n(tmp);
+		if (len != first_len)
+			return (get_next_line(-42), free(tmp), close(fd), false);
+	}
+	return (free(tmp), get_next_line(-42), close(fd), true);
 }
 
 void	init_var_parse(t_data *data)

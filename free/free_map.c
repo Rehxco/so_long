@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 22:05:28 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/21 19:17:02 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/22 15:21:46 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,16 @@ void	free_map(char **map, int height)
 {
 	int	i;
 
-	if (!map)
+	if (!*map)
 		return ;
 	i = 0;
 	while (i < height)
 	{
-		free(map[i]);
+		if (map[i])
+			free(map[i]);
+		map[i] = NULL;
 		i++;
 	}
-	free(map);
+	if (map)
+		free(map);
 }

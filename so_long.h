@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 15:31:24 by sbrochar          #+#    #+#             */
-/*   Updated: 2025/10/21 20:37:10 by sbrochar         ###   ########.fr       */
+/*   Updated: 2025/10/22 18:43:47 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,6 @@ void		ft_putnbr_fd(int n, int fd);
 void		print_moves(int moves);
 bool		check_map_size(t_data *data);
 void		init_for_main(t_data *data);
+bool		verif_map_with_emptiness(char *filename);
 
 #endif
